@@ -5,31 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>프로젝트</title>
 <meta name="description" content="만들면서 무엇이 어떻게 깨졌고 어떻게 알아냈는지의 기록.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
-  --bg:#fbfaf8; --fg:#1b1a18; --dim:#6b6862; --line:#e3dfd8;
-  --card:#ffffff; --accent:#8a5a2b; --mark:#f0ebe2; --code:#f4f1ec;
+  /* 대비를 낮췄다 (2026-09-05) — 흰 배경 + 검정 글자는 16:1 이라 눈이 아프다.
+     지금은 종이 톤 배경에 먹빛 글자로 약 9:1. WCAG AA(4.5:1)는 넉넉히 넘는다. */
+  --bg:#f6f2ea; --fg:#33302a; --dim:#6e6960; --faint:#95908a;
+  --line:#e2dbcf; --card:#fdfbf7; --accent:#8a6236; --mark:#efe8db; --code:#efe9de;
+  --a1:#7c5a3a; --a2:#2f6b7a; --a3:#8a6708; --a4:#3f7a46; --a5:#54588f;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#151513; --fg:#e8e5df; --dim:#928d84; --line:#2c2b28;
-    --card:#1c1b19; --accent:#c99a63; --mark:#26241f; --code:#211f1c;
+    --bg:#17181b; --fg:#d7d3ca; --dim:#9b968c; --faint:#736e66;
+    --line:#2a2c30; --card:#1e2024; --accent:#c9a06a; --mark:#242629; --code:#212327;
+    --a1:#c9a06a; --a2:#79c2d4; --a3:#dcc169; --a4:#7cc98a; --a5:#9aa2e0;
   }
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--bg); color:var(--fg);
-  font:16px/1.75 -apple-system,BlinkMacSystemFont,"Pretendard","Malgun Gothic",
-       "Apple SD Gothic Neo",system-ui,sans-serif;
-  letter-spacing:-.005em;
+  font:400 16.5px/1.85 "Pretendard Variable",Pretendard,-apple-system,
+       BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  letter-spacing:0; text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:760px;margin:0 auto;padding:0 22px}
 a{color:inherit}
 a:hover{color:var(--accent)}
 
 header{padding:88px 0 52px;border-bottom:1px solid var(--line)}
-h1{font-size:31px;line-height:1.3;margin:0 0 18px;letter-spacing:-.02em;font-weight:700}
+h1{font-size:34px;line-height:1.35;margin:0 0 20px;letter-spacing:-.015em;font-weight:650}
 .lead{font-size:17px;color:var(--fg);margin:0 0 14px;max-width:40em}
 .sub{font-size:14.5px;color:var(--dim);margin:0;max-width:40em}
 .count{margin-top:26px;font-size:13px;color:var(--dim);
@@ -109,6 +117,30 @@ footer a{color:var(--accent);text-decoration:none}
 .card .desc{font-size:14.5px;color:var(--dim);margin:12px 0 0;flex:1;line-height:1.68}
 .card .desc b{color:var(--fg);font-weight:600}
 .card .links{margin:18px 0 0;font-size:13px}
+
+/* 카드별 강조색 — 프로젝트 페이지의 색과 맞춘다 (2026-09-05) */
+.gallery .card:nth-child(1){--accent:var(--a1)}
+.gallery .card:nth-child(2){--accent:var(--a2)}
+.gallery .card:nth-child(3){--accent:var(--a3)}
+.gallery .card:nth-child(4){--accent:var(--a4)}
+.gallery .card:nth-child(5){--accent:var(--a5)}
+.card{position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;
+  background:var(--accent);opacity:.5}
+.card:hover::before{opacity:1}
+.card h3 a{color:var(--accent)}
+/* 주제마다 다른 색 */
+.theme:nth-of-type(1){--accent:var(--a1)} .theme:nth-of-type(2){--accent:var(--a2)}
+.theme:nth-of-type(3){--accent:var(--a3)} .theme:nth-of-type(4){--accent:var(--a4)}
+.theme:nth-of-type(5){--accent:var(--a5)} .theme:nth-of-type(6){--accent:var(--a2)}
+.theme:nth-of-type(7){--accent:var(--a1)}
+.theme{border-left-color:var(--accent);border-left-width:3px}
+.theme h3{color:var(--accent)}
+/* 읽기 편하게 — 문단 폭·행간 */
+.lead{line-height:1.8}
+.sub{line-height:1.85}
+.cases li{line-height:1.72;padding:5px 0}
+.rule p{line-height:1.85}
 </style>
 </head>
 <body>
