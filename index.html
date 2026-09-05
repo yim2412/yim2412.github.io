@@ -92,26 +92,106 @@ footer a{color:var(--accent);text-decoration:none}
   section{padding:40px 0}
   .proj{padding:20px}
 }
+
+/* 프로젝트 갤러리 (2026-09-05 개편 — 프로젝트를 맨 위로) */
+.gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--card);
+  padding:22px 24px;display:flex;flex-direction:column;transition:border-color .13s ease,transform .13s ease}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{margin:0}
+.card h3 a{text-decoration:none;font-size:20px;letter-spacing:-.015em;
+  display:inline-flex;align-items:center;gap:7px}
+.card h3 a::after{content:"→";font-size:15px;color:var(--accent);opacity:0;
+  transform:translateX(-4px);transition:opacity .13s ease,transform .13s ease}
+.card:hover h3 a::after{opacity:1;transform:translateX(0)}
+.card .meta{font-size:12.5px;color:var(--dim);margin:7px 0 0;
+  font-variant-numeric:tabular-nums}
+.card .desc{font-size:14.5px;color:var(--dim);margin:12px 0 0;flex:1;line-height:1.68}
+.card .desc b{color:var(--fg);font-weight:600}
+.card .links{margin:18px 0 0;font-size:13px}
 </style>
 </head>
 <body>
-
 <header>
   <div class="wrap">
-    <h1>개발 노트</h1>
-    <p class="lead">만들면서 <b>무엇이 어떻게 깨졌고 어떻게 알아냈는지</b>의 기록이다.</p>
+    <h1>만든 것들</h1>
+    <p class="lead">다섯 개의 개인 프로젝트와, 만들면서
+      <b>무엇이 어떻게 깨졌고 어떻게 알아냈는지</b>의 기록.</p>
     <p class="sub">
-      기능 소개가 아니라 판단 기록이라 <em>“이건 아직 안 쟀다”</em> 도 그대로 적는다.
-      각 노트 끝에 커밋이 걸려 있다 — 주장이 아니라 확인 가능한 것으로 두기 위해서다.
-      수치는 <code>실측</code>(지금 다시 잼)과 <code>인용</code>(그때 그렇게 적혀 있음)을
-      구분해 표기한다.
+      이름을 누르면 그 프로젝트의 소개 페이지로 간다. 아래 <b>주제 색인</b>은
+      다섯을 가로질러 <em>같은 모양으로 깨진 것</em>을 묶은 것이다 —
+      장르도 언어도 다른데 겹쳤다.
     </p>
     <div class="count">
-      <span>노트 <b>17</b>편</span>
-      <span>프로젝트 <b>5</b>개 · 전부 공개</span>
+      <span>프로젝트 <b>5</b>개</span>
+      <span>개발 노트 <b>17</b>편</span>
+      <span>공통 주제 <b>7</b>개</span>
     </div>
   </div>
 </header>
+
+<section>
+  <div class="wrap">
+    <h2>프로젝트</h2>
+    <div class="gallery">
+      <div class="card">
+        <h3><a href="https://yim2412.github.io/domynion/">Domynion</a></h3>
+        <p class="meta">Python · PyQt6 · 노트 7편</p>
+        <p class="desc"><b>실시간 영토 확장 전략 게임</b>에 <b>증강 드래프트</b>를 얹는다. 일정 시간마다 판이 멈추고 카드 셋 중 하나를 고르면 그것이 빌드가 된다. <a href="https://openfront.io">openfront.io</a> 에서 모티브를 얻어 제작했다.</p>
+        <div class="links">
+          <a href="https://yim2412.github.io/domynion/">프로젝트 페이지</a>
+          <a href="https://github.com/yim2412/domynion/tree/main/docs/notes">개발 노트</a>
+          <a href="https://github.com/yim2412/domynion">저장소</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3><a href="https://yim2412.github.io/joint-defense-sim/">합동 통합방어 시뮬레이터</a></h3>
+        <p class="meta">Python · PyQt6 · CesiumJS · 노트 3편</p>
+        <p class="desc">한국 해군 이지스 기동전단의 <b>다층 방어 시뮬레이터</b>. 대공·대함·대잠 교전을 확률로 풀고 <b>몬테카를로로 반복해 요구조건 충족 여부를 판정한다.</b> 3D 전장 시각화까지.</p>
+        <div class="links">
+          <a href="https://yim2412.github.io/joint-defense-sim/">프로젝트 페이지</a>
+          <a href="https://github.com/yim2412/joint-defense-sim/tree/main/docs/notes">개발 노트</a>
+          <a href="https://github.com/yim2412/joint-defense-sim">저장소</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3><a href="https://yim2412.github.io/Argus/">Argus</a></h3>
+        <p class="meta">Python · PySide6 · SQLite/Parquet · 노트 3편</p>
+        <p class="desc">Windows <b>상주형 PC 성능 이상 탐지</b>. 리소스를 5초마다 모아 «평소와 다른» 상태를 감지하고 <b>느려진 원인 프로세스를 지목한다.</b> 절대 임계값 없이 이 PC 기준의 상대값으로.</p>
+        <div class="links">
+          <a href="https://yim2412.github.io/Argus/">프로젝트 페이지</a>
+          <a href="https://github.com/yim2412/Argus/tree/main/docs/notes">개발 노트</a>
+          <a href="https://github.com/yim2412/Argus">저장소</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3><a href="https://yim2412.github.io/fifa-match-tracker/">피파 전적 관리</a></h3>
+        <p class="meta">Python · PyQt6 · SQLite · 노트 2편</p>
+        <p class="desc">넥슨 오픈API로 <b>EA SPORTS FC 온라인 감독모드</b> 전적을 조회·집계한다. 승률·선수 지표·전술 상성·슛 맵을 16종의 탭으로. 받은 경기는 로컬 DB 에 누적한다.</p>
+        <div class="links">
+          <a href="https://yim2412.github.io/fifa-match-tracker/">프로젝트 페이지</a>
+          <a href="https://github.com/yim2412/fifa-match-tracker/tree/master/docs/notes">개발 노트</a>
+          <a href="https://github.com/yim2412/fifa-match-tracker">저장소</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3><a href="https://yim2412.github.io/RL3D/">RL3D</a></h3>
+        <p class="meta">Python · pywebview · MapLibre GL · 노트 2편</p>
+        <p class="desc">전 세계 <b>로켓 발사</b>를 지도에 표시하고 <b>위성을 실시간으로 움직인다.</b> 통과 예측·지상궤적·낮밤 터미네이터까지 외부 API 없이 직접 계산한다.</p>
+        <div class="links">
+          <a href="https://yim2412.github.io/RL3D/">프로젝트 페이지</a>
+          <a href="https://github.com/yim2412/RL3D/tree/main/docs/notes">개발 노트</a>
+          <a href="https://github.com/yim2412/RL3D">저장소</a>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:13.5px;color:var(--dim);margin:22px 0 0">
+      각 프로젝트 페이지에 <b>무엇을 하는 앱인지 · 구조 · 주요 기능 · 개발 노트</b>가 있다.
+      노트 본문은 저장소에 있고, 이 페이지들은 링크만 건다 —
+      복사하면 어느 쪽이 최신인지 알 수 없게 된다.
+    </p>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -203,121 +283,6 @@ footer a{color:var(--accent);text-decoration:none}
         <li><span class="tag">방어 시뮬</span>커버리지 줄이 <code>회귀 8×26</code>에 멈춰 있었다 — 실제는 <code>38×29</code>. 매 커밋 출력되던 줄이다</li>
         <li><span class="tag">피파</span><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/01-i-planted-the-correction-back-as-the-error.md">정정한 사실을 문서에 다시 심었다</a> — 썩은 게 아니다. 틀렸다고 커밋에 적은 지 <b>6일 뒤에 그 문장을 새로 타이핑해 넣었다</b></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>프로젝트</h2>
-
-    <div class="proj">
-      <h3>Domynion</h3>
-      <p class="meta">Python · PyQt6 · 노트 7편</p>
-      <p class="desc">
-        <b>실시간 영토 확장 전략 게임</b>에 <b>증강 드래프트</b>(일정 시간마다 판이
-        멈추고 카드 셋 중 하나를 고르는 계층)를 얹는다. Python + PyQt6.
-        <a href="https://openfront.io">openfront.io</a> 에서 모티브를 얻어 제작했다.
-      </p>
-      <div class="links">
-        <a href="https://yim2412.github.io/domynion/">프로젝트 페이지</a>
-        <a href="https://github.com/yim2412/domynion/tree/main/docs/notes">노트 7편</a>
-        <a href="https://github.com/yim2412/domynion">저장소</a>
-      </div>
-      <ol class="notes">
-        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/01-ab-was-measuring-a-different-game.md">A/B가 아예 다른 판을 재고 있었다</a><span class="nk">실험 설계 — 결과가 상식과 반대일 때 무엇부터 의심하나</span></span></li>
-        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/02-a-game-that-cannot-end.md">끝날 수 없는 판 — 상한을 늘려서는 안 풀린다</a><span class="nk">규칙 설계 — 교착을 푸는 승리 조건에 하한을 두면 안 되는 이유</span></span></li>
-        <li><span class="n">03</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/03-only-the-document-i-never-reopened-rotted.md">안 여는 문서만 썩었다</a><span class="nk">문서 관리 — 같은 규칙을 지킨 문서 둘 중 하나만 썩은 이유</span></span></li>
-        <li><span class="n">04</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/04-a-rule-that-never-fired.md">한 번도 발동한 적 없는 규칙</a><span class="nk">테스트 방법론 — 변이가 살아남았을 때 무엇을 의심하나</span></span></li>
-        <li><span class="n">05</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/05-existing-is-not-the-same-as-firing.md">“축이 있는가”와 “축이 걸리는가”는 다른 질문</a><span class="nk">계측 — 코드를 읽어서는 안 보이는 것</span></span></li>
-        <li><span class="n">06</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/06-troops-were-shown-ten-times-too-large.md">병력을 10배로 보여 주고 있었다</a><span class="nk">대조 검증 — 눈으로 옮기지 않고 참고 구현을 실행한다</span></span></li>
-        <li><span class="n">07</span><span class="nt"><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/07-i-did-not-stop-after-the-first-one.md">“작다”고 적어 둔 항목이 넷이었다</a><span class="nk">백로그 — 넘긴 곳을 다시 훑는 방법</span></span></li>
-      </ol>
-    </div>
-
-    <div class="proj">
-      <h3>합동 통합방어 시뮬레이터</h3>
-      <p class="meta">Python · PyQt6 · PyInstaller · 노트 3편</p>
-      <p class="desc">
-        한국 해군 이지스 기동전단의 다층 방어 시뮬레이터. 대공·대함·대잠 교전,
-        몬테카를로 분석, 요구조건 판정, 보고서 생성. 전술 교전에서 시작해
-        <b>작전급 캠페인 → 공군 → 육군 → 합동 화력</b>으로 층이 쌓였다.
-      </p>
-      <div class="links">
-        <a href="https://yim2412.github.io/joint-defense-sim/">프로젝트 페이지</a>
-        <a href="https://github.com/yim2412/joint-defense-sim/tree/main/docs/notes">노트 3편</a>
-        <a href="https://github.com/yim2412/joint-defense-sim">저장소</a>
-      </div>
-      <ol class="notes">
-        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/01-a-gate-that-only-checked-nothing-broke.md">「아무것도 안 깨졌다」만 보는 관문</a><span class="nk">완료의 정의 — 하위 호환 검사는 아무 일도 안 하는 코드를 가장 쉽게 통과시킨다</span></span></li>
-        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/02-there-was-no-enemy-so-it-was-zero.md">적이 없어서 0이었다</a><span class="nk">측정 설계 — “죽었다”는 판정이 두 번 다 내 측정 결함이었다</span></span></li>
-        <li><span class="n">03</span><span class="nt"><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/03-checks-that-passed-while-looking-at-nothing.md">아무것도 안 보면서 통과한 검사들</a><span class="nk">검증 사각 — 검사가 눈이 머는 다섯 가지 방식</span></span></li>
-      </ol>
-    </div>
-
-    <div class="proj">
-      <h3>Argus</h3>
-      <p class="meta">Python · PySide6 · PyInstaller · 노트 3편</p>
-      <p class="desc">
-        Windows 상주형 PC 성능 이상 탐지 프로그램. 리소스를 5초마다 수집해 SQLite 에
-        쌓고, 통계(중앙값·MAD)와 룰로 <b>“평소와 다른” 상태</b>를 감지한 뒤
-        <b>느려진 원인 프로세스를 지목한다.</b> 설계 규칙 1번이
-        <em>“관측자는 가벼워야 한다”</em> 라, 자기 자신의 CPU·메모리·큐도 항상 계측한다 —
-        아래 노트 셋 중 하나가 그 자기계측이 틀린 것을 재고 있었다는 이야기다.
-      </p>
-      <div class="links">
-        <a href="https://yim2412.github.io/Argus/">프로젝트 페이지</a>
-        <a href="https://github.com/yim2412/Argus/tree/main/docs/notes">노트 3편</a>
-        <a href="https://github.com/yim2412/Argus/blob/main/docs/notes/CANDIDATES.md">후보 96건</a>
-        <a href="https://github.com/yim2412/Argus">저장소</a>
-      </div>
-      <ol class="notes">
-        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/01-measuring-a-ruler-with-itself.md">자를 자로 쟀다</a><span class="nk">실험 설계 — 시험 도형이 재려는 문턱을 품고 태어났다. 4점을 훑은 것이 한 점을 네 번 잰 것이었다</span></span></li>
-        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/02-failures-with-no-signal.md">신호가 0인 실패</a><span class="nk">관측 가능성 — 방어 코드가 실패의 증거를 지우는 다섯 가지 방식</span></span></li>
-        <li><span class="n">03</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/03-i-believed-a-trimmed-number-five-times.md">트림된 값을 다섯 번 믿었다</a><span class="nk">지표 선택 — 한 번 배운 교훈이 그것이 나온 영역 밖으로는 안 옮겨간다</span></span></li>
-      </ol>
-    </div>
-
-    <div class="proj">
-      <h3>피파 전적 관리</h3>
-      <p class="meta">Python · PyQt6 · PyInstaller · 노트 2편</p>
-      <p class="desc">
-        넥슨 오픈API로 EA SPORTS FC 온라인 <b>감독모드</b> 전적을 조회·집계하는 데스크톱 앱.
-        승률·선수 지표·전술 상성·슛 맵을 보여주고, 조회한 경기는 로컬 SQLite에 누적한다
-        (API가 한 달쯤 지난 경기를 버리기 때문). 계산이 어려운 앱이 아니라서,
-        <b>실제로 틀린 것도 계산이 아닌 쪽에서 나왔다.</b>
-      </p>
-      <div class="links">
-        <a href="https://yim2412.github.io/fifa-match-tracker/">프로젝트 페이지</a>
-        <a href="https://github.com/yim2412/fifa-match-tracker/tree/master/docs/notes">노트 2편</a>
-        <a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/CANDIDATES.md">후보 40건</a>
-        <a href="https://github.com/yim2412/fifa-match-tracker">저장소</a>
-      </div>
-      <ol class="notes">
-        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/01-i-planted-the-correction-back-as-the-error.md">정정한 사실을 문서에 다시 심었다</a><span class="nk">문서 관리 — 커밋 메시지에 남긴 정정은 문서를 옮겨 적는 사람에게 닿지 않는다</span></span></li>
-        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/02-silent-in-numbers-loud-in-bars.md">숫자로는 침묵하고 막대로는 말했다</a><span class="nk">전달 — 값은 맞는데 화면이 다른 말을 하는 다섯 가지</span></span></li>
-      </ol>
-    </div>
-
-    <div class="proj">
-      <h3>RL3D</h3>
-      <p class="meta">Python · pywebview · MapLibre GL · PyInstaller · 노트 2편</p>
-      <p class="desc">
-        전 세계 로켓 발사(Launch Library 2)를 지도에 표시하고 위성(Celestrak TLE)을
-        SGP4 로 실시간으로 움직이는 Windows 데스크톱 앱. 통과 예측·지상궤적·낮밤
-        터미네이터까지 <b>외부 차트 라이브러리 없이</b> 직접 계산한다.
-        화면 대부분이 지도라, <b>틀리는 방식도 “아무것도 안 보인다” 쪽으로 몰렸다.</b>
-      </p>
-      <div class="links">
-        <a href="https://yim2412.github.io/RL3D/">프로젝트 페이지</a>
-        <a href="https://github.com/yim2412/RL3D/tree/main/docs/notes">노트 2편</a>
-        <a href="https://github.com/yim2412/RL3D/blob/main/docs/notes/CANDIDATES.md">후보 34건</a>
-        <a href="https://github.com/yim2412/RL3D">저장소</a>
-      </div>
-      <ol class="notes">
-        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/RL3D/blob/main/docs/notes/01-not-broken-but-it-looked-broken.md">고장이 아닌데 고장으로 보였다</a><span class="nk">상태 전달 — 정상 동작의 조합이 빈 화면을 만드는 일곱 가지 경로</span></span></li>
-        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/RL3D/blob/main/docs/notes/02-checks-that-passed-vacuously.md">공허하게 통과한 검사들</a><span class="nk">검증 — 골든을 만들 수 없는 계산을 물리 불변식으로 재는 법</span></span></li>
-      </ol>
     </div>
   </div>
 </section>
