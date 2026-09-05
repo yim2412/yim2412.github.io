@@ -21,6 +21,10 @@
 통과는 증거가 아니다 · 기능이 아니라 측정이 틀렸다 · 한 번도 돌지 않은 것이 오래
 살아남는다 · 안 여는 문서가 썩는다.
 
+**세 번째(Argus)를 얹으며 그 판단이 검증됐다 (2026-09-05).** 노트 셋이 전부 기존
+주제에 붙었고 **새 주제는 하나도 안 생겼다.** 넷이 두 사례가 아니라 세 사례로
+두꺼워졌을 뿐이다 — 틀을 다시 짤 필요가 없었다는 것이 이 순서를 고른 이유였다.
+
 ## 노트 규약
 
 프로젝트마다 같다. 규약이 같아야 이 페이지가 긁을 때 규칙이 하나로 끝난다.
@@ -40,7 +44,7 @@
 |---|---|---|
 | Domynion | 7편 | [domynion](https://github.com/yim2412/domynion) |
 | 합동 통합방어 시뮬레이터 | 3편 | [joint-defense-sim](https://github.com/yim2412/joint-defense-sim) |
-| Argus | 예정 | [Argus](https://github.com/yim2412/Argus) |
+| Argus | 3편 | [Argus](https://github.com/yim2412/Argus) |
 | FIFA 전적 관리 | 예정 | [fifa-match-tracker](https://github.com/yim2412/fifa-match-tracker) |
 | RL3D | 예정 | [RL3D](https://github.com/yim2412/RL3D) |
 

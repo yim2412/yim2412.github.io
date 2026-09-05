@@ -107,18 +107,20 @@ footer a{color:var(--accent);text-decoration:none}
       구분해 표기한다.
     </p>
     <div class="count">
-      <span>노트 <b>10</b>편</span>
-      <span>프로젝트 <b>2</b>개 공개 · <b>3</b>개 예정</span>
+      <span>노트 <b>13</b>편</span>
+      <span>프로젝트 <b>3</b>개 공개 · <b>2</b>개 예정</span>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <h2>같은 모양이 두 프로젝트에서 나왔다</h2>
+    <h2>같은 모양이 세 프로젝트에서 나왔다</h2>
     <p style="font-size:15px;color:var(--dim);max-width:40em;margin-bottom:30px">
-      장르도 언어도 다른 두 프로젝트인데 — 하나는 실시간 전략 게임, 하나는 방어 시뮬레이터 —
-      깨진 모양이 겹쳤다. 사례가 하나였을 땐 그 프로젝트의 성질인 줄 알았다.
+      장르도 언어도 다른 세 프로젝트인데 — 실시간 전략 게임 · 방어 시뮬레이터 · 상주형
+      모니터링 프로그램 — 깨진 모양이 겹쳤다. 사례가 하나였을 땐 그 프로젝트의 성질인 줄 알았다.
+      <b>새 주제는 두 프로젝트 이상에서 나왔을 때만 만든다</b> — Argus 를 얹으며 새로 생긴
+      주제는 없다. 셋 다 이미 있던 자리에 붙었다.
     </p>
 
     <div class="theme">
@@ -137,6 +139,8 @@ footer a{color:var(--accent);text-decoration:none}
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/01-ab-was-measuring-a-different-game.md">A/B가 아예 다른 판을 재고 있었다</a></li>
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/06-troops-were-shown-ten-times-too-large.md">병력을 원본의 10배로 보여 주고 있었다</a></li>
         <li><span class="tag">방어 시뮬</span><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/02-there-was-no-enemy-so-it-was-zero.md">적이 없어서 0이었다</a> — 모든 지표가 0인 화면에서 하나만 골라 기능의 성질로 읽었다</li>
+        <li><span class="tag">Argus</span><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/01-measuring-a-ruler-with-itself.md">자를 자로 쟀다</a> — 문턱을 정하려고 만든 시험 도형이 그 문턱값을 만들도록 합성돼 있었다</li>
+        <li><span class="tag">Argus</span><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/03-i-believed-a-trimmed-number-five-times.md">트림된 값을 다섯 번 믿었다</a> — RSS 는 “얼마나 쓰는가”가 아니라 “OS 가 얼마나 내주는가”를 잰다</li>
       </ul>
     </div>
 
@@ -146,6 +150,7 @@ footer a{color:var(--accent);text-decoration:none}
       <ul class="cases">
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/05-existing-is-not-the-same-as-firing.md">“축이 있는가”와 “축이 걸리는가”는 다른 질문</a></li>
         <li><span class="tag">방어 시뮬</span><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/01-a-gate-that-only-checked-nothing-broke.md">「아무것도 안 깨졌다」만 보는 관문</a> — 하위 호환 검사는 아무 일도 안 하는 코드를 가장 쉽게 통과시킨다</li>
+        <li><span class="tag">Argus</span><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/02-failures-with-no-signal.md">신호가 0인 실패</a> — 6시간 주기 갱신이 첫 틱에 죽어 몇 주 동안 “기동 시 1회”로 돌았다. stderr 가 없는 상주라 아무 신호도 없었다</li>
       </ul>
     </div>
 
@@ -208,12 +213,29 @@ footer a{color:var(--accent);text-decoration:none}
       </ol>
     </div>
 
-    <div class="soon">
-      <div class="proj">
-        <h3>Argus <span style="font-size:12px;color:var(--dim);font-weight:400">· 예정</span></h3>
-        <p class="desc">Windows PC 성능 이상 탐지. 리소스 패턴을 학습해 평소와 다른 상태를 감지하고, 느려진 원인 프로세스를 지목한다.</p>
-        <div class="links"><a href="https://github.com/yim2412/Argus">저장소</a></div>
+    <div class="proj">
+      <h3>Argus</h3>
+      <p class="meta">Python · PySide6 · PyInstaller · 노트 3편</p>
+      <p class="desc">
+        Windows 상주형 PC 성능 이상 탐지 프로그램. 리소스를 5초마다 수집해 SQLite 에
+        쌓고, 통계(중앙값·MAD)와 룰로 <b>“평소와 다른” 상태</b>를 감지한 뒤
+        <b>느려진 원인 프로세스를 지목한다.</b> 설계 규칙 1번이
+        <em>“관측자는 가벼워야 한다”</em> 라, 자기 자신의 CPU·메모리·큐도 항상 계측한다 —
+        아래 노트 셋 중 하나가 그 자기계측이 틀린 것을 재고 있었다는 이야기다.
+      </p>
+      <div class="links">
+        <a href="https://github.com/yim2412/Argus/tree/main/docs/notes">노트 3편</a>
+        <a href="https://github.com/yim2412/Argus/blob/main/docs/notes/CANDIDATES.md">후보 96건</a>
+        <a href="https://github.com/yim2412/Argus">저장소</a>
       </div>
+      <ol class="notes">
+        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/01-measuring-a-ruler-with-itself.md">자를 자로 쟀다</a><span class="nk">실험 설계 — 시험 도형이 재려는 문턱을 품고 태어났다. 4점을 훑은 것이 한 점을 네 번 잰 것이었다</span></span></li>
+        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/02-failures-with-no-signal.md">신호가 0인 실패</a><span class="nk">관측 가능성 — 방어 코드가 실패의 증거를 지우는 다섯 가지 방식</span></span></li>
+        <li><span class="n">03</span><span class="nt"><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/03-i-believed-a-trimmed-number-five-times.md">트림된 값을 다섯 번 믿었다</a><span class="nk">지표 선택 — 한 번 배운 교훈이 그것이 나온 영역 밖으로는 안 옮겨간다</span></span></li>
+      </ol>
+    </div>
+
+    <div class="soon">
       <div class="proj">
         <h3>FIFA 전적 관리 <span style="font-size:12px;color:var(--dim);font-weight:400">· 예정</span></h3>
         <p class="desc">넥슨 오픈API로 EA SPORTS FC 온라인 감독모드 전적을 조회·집계하는 데스크톱 앱.</p>
