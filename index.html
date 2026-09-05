@@ -107,20 +107,23 @@ footer a{color:var(--accent);text-decoration:none}
       구분해 표기한다.
     </p>
     <div class="count">
-      <span>노트 <b>13</b>편</span>
-      <span>프로젝트 <b>3</b>개 공개 · <b>2</b>개 예정</span>
+      <span>노트 <b>15</b>편</span>
+      <span>프로젝트 <b>4</b>개 공개 · <b>1</b>개 예정</span>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <h2>같은 모양이 세 프로젝트에서 나왔다</h2>
+    <h2>같은 모양이 네 프로젝트에서 나왔다</h2>
     <p style="font-size:15px;color:var(--dim);max-width:40em;margin-bottom:30px">
-      장르도 언어도 다른 세 프로젝트인데 — 실시간 전략 게임 · 방어 시뮬레이터 · 상주형
-      모니터링 프로그램 — 깨진 모양이 겹쳤다. 사례가 하나였을 땐 그 프로젝트의 성질인 줄 알았다.
-      <b>새 주제는 두 프로젝트 이상에서 나왔을 때만 만든다</b> — Argus 를 얹으며 새로 생긴
-      주제는 없다. 셋 다 이미 있던 자리에 붙었다.
+      장르도 언어도 다른 네 프로젝트인데 — 실시간 전략 게임 · 방어 시뮬레이터 · 상주형
+      모니터링 · 전적 조회 앱 — 깨진 모양이 겹쳤다. 사례가 하나였을 땐 그 프로젝트의
+      성질인 줄 알았다.
+      <b>새 주제는 두 프로젝트 이상에서 나왔을 때만 만든다.</b>
+      Argus(3번째)에서는 새 주제가 없었고, 피파(4번째)에서 <b>둘</b>이 생겼다 —
+      「조용히 실패한다」와 「화면이 본문과 다른 말을 한다」. 둘 다 Argus 에서 이미
+      두껍게 나왔던 것이 <b>두 번째 프로젝트를 만나</b> 조건을 채운 경우다.
     </p>
 
     <div class="theme">
@@ -129,6 +132,7 @@ footer a{color:var(--accent);text-decoration:none}
       <ul class="cases">
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/04-a-rule-that-never-fired.md">한 번도 발동한 적 없는 규칙</a> — 소스를 일부러 깨뜨렸는데 17개 테스트가 전부 통과했다</li>
         <li><span class="tag">방어 시뮬</span><a href="https://github.com/yim2412/joint-defense-sim/blob/main/docs/notes/03-checks-that-passed-while-looking-at-nothing.md">아무것도 안 보면서 통과한 검사들</a> — 순회 대상 0개, 골든에 없는 편성, 스캔 범위 밖. 다섯 건 다 PASS였다</li>
+        <li><span class="tag">피파</span>검사 도구가 <b>실행 환경과 달라</b> 아무것도 안 잡았다 — 봇 런타임은 Rhino(ES5)인데 <code>node</code>로 문법을 검사하니 최신 문법을 전부 통과시켰다. 폰에 올린 뒤에야 안다</li>
       </ul>
     </div>
 
@@ -155,12 +159,34 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
 
     <div class="theme">
+      <h3>조용히 실패한다</h3>
+      <p>예외도 로그도 붉은 테스트도 없이 죽는다. 그리고 방어 코드가 실패의 증거를 지우기도 한다.</p>
+      <ul class="cases">
+        <li><span class="tag">Argus</span><a href="https://github.com/yim2412/Argus/blob/main/docs/notes/02-failures-with-no-signal.md">신호가 0인 실패</a> — 자식의 디코딩이 reader 스레드에서 죽어 <code>stderr</code>가 <code>None</code>이 되고, <code>(x or "")</code>가 그걸 빈 문자열로 바꿔 실패 원인이 통째로 사라졌다</li>
+        <li><span class="tag">Argus</span>지문 갱신 스레드가 첫 틱에 죽어 몇 주 동안 “기동 시 1회”로 돌았다 — <code>pythonw</code>라 stderr가 없어 아무 신호도 없었다</li>
+        <li><span class="tag">피파</span><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/CANDIDATES.md">exe가 아무 말 없이 빈 DB를 새로 만들었다</a> — 실행 방식에 따라 데이터 폴더가 갈려, 그때까지 쌓은 105경기를 못 봤다</li>
+        <li><span class="tag">피파</span>웹 점검 페이지를 “랭킹 밖”으로 오인해 <b>빈 값을 TTL 내내 캐시</b>했다 — 실패를 성공으로 굳혔다</li>
+      </ul>
+    </div>
+
+    <div class="theme">
+      <h3>화면이 본문과 다른 말을 한다</h3>
+      <p>계산은 맞는데 전달이 틀린다. 두 표현이 각자는 맞고 서로 어긋나면, 한쪽만 보는 테스트는 영원히 통과한다.</p>
+      <ul class="cases">
+        <li><span class="tag">Argus</span>리포트 본문은 <em>“원인 프로세스는 특정할 수 없습니다”</em>라고 정확히 적어 놓고, 바로 아래 표 제목이 <code>원인 후보</code>였다 — <b>순위가 매겨진 표를 사람은 답으로 읽는다</b></li>
+        <li><span class="tag">피파</span><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/02-silent-in-numbers-loud-in-bars.md">숫자로는 침묵하고 막대로는 말했다</a> — 표본이 모자라 비율을 <code>—</code>로 숨기면서 막대는 실제 길이로 그렸다</li>
+        <li><span class="tag">피파</span>시즌 필터를 걸었는데 화면 문구는 “누적 전체 기준”으로 박혀 있었다</li>
+      </ul>
+    </div>
+
+    <div class="theme">
       <h3>안 여는 문서가 썩는다</h3>
       <p>틀린 조언은 없는 조언보다 나쁘다. 그리고 낡은 줄은 대개 초록 옆에 붙어 있어서 더 안 읽힌다.</p>
       <ul class="cases">
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/03-only-the-document-i-never-reopened-rotted.md">안 여는 문서만 썩었다</a></li>
         <li><span class="tag">Domynion</span><a href="https://github.com/yim2412/domynion/blob/main/docs/notes/07-i-did-not-stop-after-the-first-one.md">“작다”고 적어 둔 항목이 넷이었다</a></li>
         <li><span class="tag">방어 시뮬</span>커버리지 줄이 <code>회귀 8×26</code>에 멈춰 있었다 — 실제는 <code>38×29</code>. 매 커밋 출력되던 줄이다</li>
+        <li><span class="tag">피파</span><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/01-i-planted-the-correction-back-as-the-error.md">정정한 사실을 문서에 다시 심었다</a> — 썩은 게 아니다. 틀렸다고 커밋에 적은 지 <b>6일 뒤에 그 문장을 새로 타이핑해 넣었다</b></li>
       </ul>
     </div>
   </div>
@@ -235,12 +261,27 @@ footer a{color:var(--accent);text-decoration:none}
       </ol>
     </div>
 
-    <div class="soon">
-      <div class="proj">
-        <h3>FIFA 전적 관리 <span style="font-size:12px;color:var(--dim);font-weight:400">· 예정</span></h3>
-        <p class="desc">넥슨 오픈API로 EA SPORTS FC 온라인 감독모드 전적을 조회·집계하는 데스크톱 앱.</p>
-        <div class="links"><a href="https://github.com/yim2412/fifa-match-tracker">저장소</a></div>
+    <div class="proj">
+      <h3>피파 전적 관리</h3>
+      <p class="meta">Python · PyQt6 · PyInstaller · 노트 2편</p>
+      <p class="desc">
+        넥슨 오픈API로 EA SPORTS FC 온라인 <b>감독모드</b> 전적을 조회·집계하는 데스크톱 앱.
+        승률·선수 지표·전술 상성·슛 맵을 보여주고, 조회한 경기는 로컬 SQLite에 누적한다
+        (API가 한 달쯤 지난 경기를 버리기 때문). 계산이 어려운 앱이 아니라서,
+        <b>실제로 틀린 것도 계산이 아닌 쪽에서 나왔다.</b>
+      </p>
+      <div class="links">
+        <a href="https://github.com/yim2412/fifa-match-tracker/tree/master/docs/notes">노트 2편</a>
+        <a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/CANDIDATES.md">후보 40건</a>
+        <a href="https://github.com/yim2412/fifa-match-tracker">저장소</a>
       </div>
+      <ol class="notes">
+        <li><span class="n">01</span><span class="nt"><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/01-i-planted-the-correction-back-as-the-error.md">정정한 사실을 문서에 다시 심었다</a><span class="nk">문서 관리 — 커밋 메시지에 남긴 정정은 문서를 옮겨 적는 사람에게 닿지 않는다</span></span></li>
+        <li><span class="n">02</span><span class="nt"><a href="https://github.com/yim2412/fifa-match-tracker/blob/master/docs/notes/02-silent-in-numbers-loud-in-bars.md">숫자로는 침묵하고 막대로는 말했다</a><span class="nk">전달 — 값은 맞는데 화면이 다른 말을 하는 다섯 가지</span></span></li>
+      </ol>
+    </div>
+
+    <div class="soon">
       <div class="proj">
         <h3>RL3D <span style="font-size:12px;color:var(--dim);font-weight:400">· 예정</span></h3>
         <p class="desc">로켓 발사 &amp; 위성 추적 데스크톱 앱. pywebview + MapLibre GL.</p>
