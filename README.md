@@ -68,7 +68,7 @@
 | 합동 통합방어 시뮬레이터 | 3편 | [joint-defense-sim](https://github.com/yim2412/joint-defense-sim) |
 | Argus | 3편 | [Argus](https://github.com/yim2412/Argus) |
 | 피파 전적 관리 | 2편 | [fifa-match-tracker](https://github.com/yim2412/fifa-match-tracker) ⚠️ 기본 브랜치가 `master` |
-| RL3D | 2편 | [RL3D](https://github.com/yim2412/RL3D) |
+| RL3D | 3편 | [RL3D](https://github.com/yim2412/RL3D) |
 
 ## 고칠 때
 
